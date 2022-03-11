@@ -28,7 +28,7 @@ export async function getCharacters() {
     container.innerHTML += `
     <li class="cards">
       <img src="${result[i].image}" />
-      ${result[i].name} | ${result[i].gender}
+      <h2>${result[i].name} | ${result[i].gender}</h2>
     </li>
     `;
   }
