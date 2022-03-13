@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 const container = document.querySelector('.list');
 
 export async function getCharacters() {
@@ -22,13 +24,15 @@ export async function getCharacters() {
   });
   let characters = await results.json();
   const result = characters.data.characters.results;
-  console.log(result);
 
-  for (let i = 0; i < result.length; i++) {
+  let descSort = _.orderBy(result, ['name'], ['desc']);
+  console.log(descSort);
+
+  for (let i = 0; i < descSort.length; i++) {
     container.innerHTML += `
     <li class="cards">
-      <img src="${result[i].image}" />
-      <h2>${result[i].name} | ${result[i].gender}</h2>
+      <img src="${descSort[i].image}" />
+      <h2>${descSort[i].name} | ${descSort[i].gender}</h2>
     </li>
     `;
   }
